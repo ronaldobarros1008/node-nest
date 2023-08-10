@@ -1,7 +1,7 @@
 import { Notification } from "../../src/application/entities/notification"
-import { NotificationRepository } from "../../src/application/repositories/notification-reposiory"
+import { NotificationsRepository } from "../../src/application/repositories/notifications-reposiory"
 
-export class InMemoryNotificationRepository implements NotificationRepository {
+export class InMemoryNotificationRepository implements NotificationsRepository {
     public notifications: Notification[] = []
 
     async create(notification: Notification){
