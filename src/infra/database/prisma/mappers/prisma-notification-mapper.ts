@@ -20,7 +20,7 @@ export class PrismaNotificationMappe {
             content: new Content(raw.content),
             recipientId: raw.recipientId,
             readAt: raw.readAt,
-            canceledAt: raw.createdAt,
+            canceledAt: raw.canceledAt,
             createdAt: raw.createdAt
         },
         raw.id);
