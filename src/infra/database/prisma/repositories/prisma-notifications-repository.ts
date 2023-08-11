@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Notification } from "@application/entities/notification";
 import { NotificationsRepository } from "@application/repositories/notifications-reposiory";
 import { PrismaService } from "../prisma.service";
-import { PrismaNotificationMappe } from "../mappers/prisma-notification-mapper";
+import { PrismaNotificationMapper } from "../mappers/prisma-notification-mapper";
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class PrismaNotificationsRepository implements NotificationsRepository {
             return null
         }
 
-        return PrismaNotificationMappe.toDomain(notification);
+        return PrismaNotificationMapper.toDomain(notification);
     }
 
     async findManyByRecipientId(recipientId: string): Promise<Notification[]> {
@@ -30,7 +30,7 @@ export class PrismaNotificationsRepository implements NotificationsRepository {
             },
         });
 
-        return notification.map(PrismaNotificationMappe.toDomain);
+        return notification.map(PrismaNotificationMapper.toDomain);
     }
 
     async countManyByRecipientId(recipientId: string): Promise<number> {
@@ -44,7 +44,7 @@ export class PrismaNotificationsRepository implements NotificationsRepository {
     }
 
     async create(notification: Notification): Promise<void> {
-        const raw = PrismaNotificationMappe.toPrisma(notification);
+        const raw = PrismaNotificationMapper.toPrisma(notification);
 
         await this.prisma.notification.create({
             data: raw,
@@ -52,7 +52,7 @@ export class PrismaNotificationsRepository implements NotificationsRepository {
     }
 
     async save(notification: Notification): Promise<void> {
-        const raw = PrismaNotificationMappe.toPrisma(notification);
+        const raw = PrismaNotificationMapper.toPrisma(notification);
 
         await this.prisma.notification.update({
             where: {
