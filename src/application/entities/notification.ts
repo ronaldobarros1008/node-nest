@@ -15,7 +15,8 @@ export class Notification {
     private _id: string
     private props: NotificationProps
 
-    constructor(props: Replace<NotificationProps, {createdAt?: Date}>){
+    constructor(props: Replace<NotificationProps, { createdAt?: Date }>,
+        id?: string) {
         this._id = randomUUID()
         this.props = {
             ...props,
@@ -23,12 +24,12 @@ export class Notification {
         }
     }
 
-    public get id(){
+    public get id() {
         return this._id;
     }
 
     public set recipientId(recipientId: string) {
-        this.props.recipientId = recipientId;        
+        this.props.recipientId = recipientId;
     }
 
     public get recipientId(): string {
@@ -36,7 +37,7 @@ export class Notification {
     }
 
     public set content(content: Content) {
-        this.props.content = content;        
+        this.props.content = content;
     }
 
     public get content(): Content {
@@ -44,18 +45,18 @@ export class Notification {
     }
 
     public set category(category: string) {
-        this.props.category = category;        
+        this.props.category = category;
     }
 
     public get category(): string {
         return this.props.category;
     }
 
-    public read(){
+    public read() {
         this.props.readAt = new Date();
     }
 
-    public unread(){
+    public unread() {
         this.props.readAt = null;
     }
 
